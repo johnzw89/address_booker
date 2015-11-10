@@ -103,6 +103,12 @@ class ContactsController < ApplicationController
     end
 	end
 
+	def share_email
+		contact = Contact.find(params[:id])
+		ContactMailer.share_contact(contact, params[:email]).deliver_now
+		redirect_to root_url
+	end
+
 	private
 
 	def contact_params

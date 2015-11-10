@@ -34,6 +34,11 @@
 					</div>
 				</div>
 
+				<%= form_tag({action: :share_email, id: contact.id}) do %>
+					<%= text_field_tag :email %>
+					<%= submit_tag "Share Contact" %>
+				<% end %>
+
 				<div class="actions">
 					<%= link_to "Edit", edit_contact_path(contact.id) %>
 				</div>

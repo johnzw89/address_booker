@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   get 'add_contact_method' => 'contacts#add_contact_method', as: :add_contact_method
   get 'download_csv' => 'contacts#download_csv', as: :download_csv
 
+  if Rails.env.development?
+    default_url_options :host => "localhost:3000"
+  end
+
+  post 'share_email/:id' => 'contacts#share_email'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
