@@ -1,0 +1,47 @@
+<div class="container">
+	
+	<div class="upload-container">
+		<h2>Upload CSV</h2>
+		<%= form_tag({:action => :upload_csv}, multipart: true) do %>
+		  <%= file_field_tag :csv_file %>
+		  <%= submit_tag("Import") %>
+		<% end %>
+		<p>
+			<small>
+				Note: CSV file data columns must be in this order: first name, last name, email, phone number. It skips the first row as column headers
+			</small>
+		</p>
+	</div>
+
+	<div class="contacts-container">
+		<% @contacts.each do |contact| %>
+			<div class="contact">
+				<h3 class="serif"><%= link_to contact.full_name, contact_path(contact) %></h3>
+
+				<div>
+					<div class="phone-numbers">
+						<p><strong>Phone Numbers:</strong></p>
+						<% contact.contact_methods.where(info_type: ContactMethod::TYPES[:phone]).each do |phone_number| %>
+							<p><%= number_to_phone(phone_number.info) %></p>
+						<% end %>
+					</div>
+
+					<div class="emails">
+						<p><strong>Emails:</strong></p>
+						<% contact.contact_methods.where(info_type: ContactMethod::TYPES[:email]).each do |email| %>
+							<p><%= email.info %></p>
+						<% end %>
+					</div>
+				</div>
+
+				<div class="actions">
+					<%= link_to "Edit", edit_contact_path(contact.id) %>
+				</div>
+
+			</div>
+		<% end %>
+	</div>
+
+
+
+</div>

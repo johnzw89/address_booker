@@ -1,0 +1,38 @@
+
+$gray: #CECECE;
+
+.serif {
+	font-family: helvetica, sans-serif;
+}
+
+.container {
+	
+	.upload-container {
+		background-color: $gray;
+		padding: 30px;
+	}
+
+	.contacts-container {
+		padding: 30px;
+		.contact {
+			float: left;
+			margin: 15px;
+
+			.emails{
+				float: left;
+			}
+			.phone-numbers{
+				float: left;
+				margin-right: 15px;
+			}
+			.actions {
+				float: left;
+				width: 100%;
+			}
+		}
+	}
+}
+
+.errors {
+	border: 2px solid red;
+}

@@ -1,0 +1,15 @@
+<h1><%= @contact.full_name %></h1>
+
+<strong>Email</strong>
+<% @contact.contact_methods.where(info_type: ContactMethod::TYPES[:email]).each do |email| %>
+	<p><%= email.info %></p>
+<% end %>
+
+<strong>Phone Number</strong>
+<% @contact.contact_methods.where(info_type: ContactMethod::TYPES[:phone]).each do |phone| %>
+	<p><%= phone.info %></p>
+<% end %>
+
+<hr>
+<%= link_to "Edit", edit_contact_path(@contact.id) %> | 
+<%= link_to "Delete", contact_path(@contact.id), method: :delete %>
