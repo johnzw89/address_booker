@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-
+	// Client side validations
 	$(".contact-info").keyup(function(){
 		
 		var email_valid = true;
@@ -17,7 +17,6 @@ $(document).ready(function(){
 			}
 
 		} else if ($(this).next('select').val() === "phone"){
-			console.log(/^(?=.*\d)[\d ]+$/.test($(this).val()));
 			
 			// Numbers and spaces
 			if( /^(?=.*\d)[\d ]+$/.test($(this).val()) ){
@@ -32,7 +31,6 @@ $(document).ready(function(){
 		if(email_valid && phone_valid) {
 			$(".submit-btn").removeAttr("disabled");
 		}
-
 	});
 
 

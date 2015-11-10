@@ -9,7 +9,8 @@
 <body>
 
 <%= link_to "Home", root_url %> | 
-<%= link_to "Add Contact", new_contact_url %>
+<%= link_to "Add Contact", new_contact_url %> | 
+<%= link_to "Download Contacts", download_csv_url(format: :csv) %>
 <%= yield %>
 
 </body>

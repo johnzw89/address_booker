@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   root 'contacts#index'
   resources :contacts
   post 'upload_csv' => 'contacts#upload_csv'
+  get 'add_contact_method' => 'contacts#add_contact_method', as: :add_contact_method
+  get 'download_csv' => 'contacts#download_csv', as: :download_csv
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

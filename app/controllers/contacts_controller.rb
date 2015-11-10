@@ -13,11 +13,18 @@ class ContactsController < ApplicationController
 
 	def new
 		@contact = Contact.new
+		@contact.contact_methods.build
+	end
+
+	def add_contact_method
+		@contact_method = ContactMethod.new
+		respond_to do |format|
+    	format.js
+  	end
 	end
 
 	def edit
 		@contact = Contact.find(params[:id])
-
 	end
 
 	def update
@@ -43,7 +50,6 @@ class ContactsController < ApplicationController
 
 
 	def upload_csv
-
 		file  = params[:csv_file]
 		# parse and create records
 		if file
@@ -67,6 +73,28 @@ class ContactsController < ApplicationController
 			end
 		end
 		redirect_to :contacts
+	end
+
+	def download_csv
+		@contacts = Contact.all
+		csv_file = CSV.generate do |csv|
+      csv << ["first name", "last name", "Contact Info", "Contact Type"]
+      @contacts.each do |c|
+      	c.contact_methods.each do |cm|
+      		row = [c.first_name, c.last_name, cm.info, cm.info_type]
+        	csv << row
+      	end
+      end
+    end
+
+    respond_to do |format|
+    	format.csv do
+      	send_data csv_file
+      end
+    end
+    
+    
+    
 	end
 
 end

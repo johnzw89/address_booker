@@ -1,0 +1,6 @@
+<%= fields_for :contact_method do |c| %>
+	<span id="contact_method_field">
+		Info: <%= c.text_field :info, required: true, class: "contact-info" %>
+		<%= c.select :info_type, ContactMethod::TYPES %><br />
+	</span>
+<% end %>
