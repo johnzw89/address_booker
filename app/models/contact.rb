@@ -11,11 +11,12 @@
 
 class Contact < ActiveRecord::Base
 
-	validates :first_name, :last_name, presence: true
-	validates_uniqueness_of :first_name, scope: [:last_name]
-
 	has_many :contact_methods
 	accepts_nested_attributes_for :contact_methods, allow_destroy: true
+
+	validates :first_name, :last_name, :contact_methods, presence: true
+	validates_uniqueness_of :first_name, scope: [:last_name]
+
 
 	def full_name
 		first_name + " " + last_name

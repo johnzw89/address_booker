@@ -27,6 +27,15 @@ class ContactsController < ApplicationController
 		@contact = Contact.find(params[:id])
 	end
 
+	def create
+		contact = Contact.create(contact_params)
+		if contact.save
+			redirect_to root_url
+		else
+			# some error message here
+		end
+	end
+
 	def update
 		@contact = Contact.find(params[:id])
 		params[:contact][:contact_methods_attributes].each do |key, value|
@@ -92,9 +101,12 @@ class ContactsController < ApplicationController
       	send_data csv_file
       end
     end
-    
-    
-    
 	end
+
+	private
+
+	def contact_params
+    params.require(:contact).permit(:first_name, :last_name, {contact_methods_attributes: [:info, :info_type]} )
+  end
 
 end

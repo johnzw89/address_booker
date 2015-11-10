@@ -1,4 +1,6 @@
-$(document).ready(function(){
+
+// because of turbo links
+$(document).on('ready page:load', function () {
 
 	// Client side validations
 	$(".contact-info").keyup(function(){
